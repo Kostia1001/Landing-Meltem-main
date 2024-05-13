@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@22.0.2/build/css/intlTelInput.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Модальні вікна -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div
+            class="modal-header modal-header_column"
+            style="border-bottom: none"
+          >
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="title">
+              <p
+                class="modal-title modal-title_size"
+                id="exampleModalLongTitle"
+              >
+                Залишайте заявку
+              </p>
+              <p>ми зв'яжемося з вами ближайшим часом.</p>
+            </div>
+          </div>
+          <div
+            class="modal-body"
+            style="
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              padding: 0.75rem 0.75rem 0;
+            "
+          >
+            <form id="form" style="width: 100%; max-width: 347px">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="Ваше ім'я"
+                />
+              </div>
+              <div class="form-group formTel">
+                <input type="tel" class="form-control" id="phone" />
+              </div>
+              <!-- <div class="form-group">
+                  <input type="tel" class="form-control" id="inputPhone" placeholder="Введите ваш номер телефона" />
+                </div> -->
+            </form>
+          </div>
+          <div
+            class="modal-footer"
+            style="
+              border-top: none;
+              display: flex;
+              justify-content: center;
+              padding: 0 0.75rem 0.75rem;
+            "
+          >
+            <button
+              style="width: 100%; max-width: 347px"
+              type="button"
+              class="btn btn-secondary"
+              id="submitButton"
+              data-dismiss="modal"
+            >
+              Відправить
+            </button>
+            <p class="modal-footer__text">
+              Натискаючи кнопку "Надіслати", ви погоджуєтесь з <br /><a
+                href=""
+                style="color: #333"
+                >Правилами обробки персональних даних</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="successModalTitle"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-dialog-centered modal-sm"
+        role="document"
+        data-dismiss="modal"
+      >
+        <div class="modal-content modal-content_display">
+          <div class="box">
+            <svg
+              width="67"
+              height="68"
+              viewBox="0 0 67 68"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="Group">
+                <path
+                  id="Vector"
+                  d="M46.5936 17.9301C45.9381 17.2782 44.8793 17.2782 44.2227 17.9301L27.5981 34.5721L22.8409 29.5289C22.5243 29.1865 22.0799 28.9918 21.6132 28.9907C21.1477 28.9918 20.7033 29.1865 20.3867 29.5289L14.4195 35.9334C13.7898 36.5842 13.7898 37.6184 14.4195 38.2691L26.3047 50.1704H26.3035C26.6213 50.4859 27.0504 50.6606 27.4972 50.6582C27.9439 50.6606 28.3731 50.4859 28.6909 50.1704L52.5609 26.2501C52.8786 25.9347 53.058 25.5044 53.058 25.0565C53.058 24.6085 52.8786 24.1794 52.5609 23.8628L46.5936 17.9301ZM27.5312 46.5064L17.9829 36.942L21.6145 33.0421L26.3374 38.0854C26.654 38.4137 27.0914 38.5989 27.5475 38.5989C28.0036 38.5989 28.441 38.4137 28.7576 38.0854L45.4161 21.4103L48.9972 24.9914L27.5312 46.5064Z"
+                  fill="#859BA6"
+                />
+                <path
+                  id="Vector_2"
+                  d="M33.5003 0.667046C24.6592 0.667046 16.1817 4.17879 9.92961 10.4296C3.67875 16.6817 0.166992 25.1592 0.166992 34.0002C0.166992 42.8413 3.67875 51.3188 9.92961 57.5708C16.1817 63.8217 24.6592 67.3334 33.5003 67.3334C42.3414 67.3334 50.819 63.8217 57.071 57.5708C63.3219 51.3188 66.8337 42.8413 66.8337 34.0002C66.8254 25.1628 63.3102 16.6886 57.0602 10.4401C50.8118 4.19049 42.3375 0.675153 33.5 0.666748L33.5003 0.667046ZM33.5003 63.9559C25.5505 63.9559 17.9263 60.7971 12.3052 55.1746C6.68381 49.5532 3.52746 41.9281 3.52866 33.9783C3.52986 26.0285 6.68982 18.4044 12.3136 12.7845C17.9359 7.16432 25.5625 4.00919 33.5123 4.01249C41.4622 4.01484 49.0852 7.17603 54.7042 12.8007C60.3231 18.4242 63.4774 26.0507 63.4726 34.0005C63.4632 41.9471 60.303 49.5652 54.6843 55.1839C49.0656 60.8025 41.4472 63.9628 33.5009 63.9721L33.5003 63.9559Z"
+                  fill="#859BA6"
+                />
+              </g>
+            </svg>
+
+            <h5 class="modal-title modal-title_text" id="successModalTitle">
+              Дякуємо за вашу заявку
+            </h5>
+            <p>Ваші дані успішно надіслані</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Модальні вікна -->
+
+    <header class="header-box" style="position: fixed;left: 0;right: 0;top: 0; z-index: 999;">
+      <div class="menu">
+        <nav
+          class="navbar navbar-expand-sm navbar-light bg-light mt-lg-0 navbar_justify"
+          style="width: 100%"
+        >
+          <a class="navbar-brand" href="#">
+            <svg
+              width="146"
+              height="31"
+              viewBox="0 0 146 31"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="Meltem logo 1" clip-path="url(#clip0_4720_136)">
+                <g id="&#208;&#161;&#208;&#187;&#208;&#190;&#208;&#185; 1">
+                  <g id="Group">
+                    <path
+                      id="Vector"
+                      d="M71.1524 1.69922H62.3076V30.1598H71.1524V1.69922Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_2"
+                      d="M5.73176 12.3196L0 30.157H12.1725L5.73176 12.3196Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_3"
+                      d="M7.53711 7.02607L9.37696 1.68652H16.0648L25.8283 30.1573H15.4283L7.53711 7.02607Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_4"
+                      d="M21.1221 6.9547L22.9619 1.68628H29.6149L39.3808 30.1571H28.9433L21.1221 6.9547Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_5"
+                      d="M138.131 4.54657C138.131 -0.848857 146 -0.848857 146 4.54657C146 9.942 138.131 9.942 138.131 4.54657ZM145.555 4.54657C145.555 -0.287468 138.578 -0.287468 138.578 4.54657C138.578 9.38061 145.555 9.39077 145.555 4.54657ZM143.933 6.79975V6.85563H143.423L142.13 5.18925H140.934V6.85563H140.467V2.26037H142.242C143.124 2.26037 143.783 2.81922 143.783 3.73116C143.783 4.4729 143.316 5.01905 142.612 5.13082L143.933 6.79721V6.79975ZM140.932 4.77011H142.212C142.832 4.77011 143.313 4.39162 143.313 3.7337C143.313 3.11643 142.832 2.69729 142.212 2.69729H140.932V4.77011Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_6"
+                      d="M113.684 17.2146L109.473 30.157H118.352L113.684 17.2146Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_7"
+                      d="M115.204 13.5796L116.477 9.88354H123.624L130.56 30.157H120.936L115.204 13.5796Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_8"
+                      d="M127.412 13.5061L128.755 9.88379H135.902L142.768 30.1573H133.074L127.412 13.5061Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_9"
+                      d="M59.8311 21.716C59.8311 21.716 60.7748 9.1876 49.5709 9.1876C49.5709 9.1876 39.2158 8.56271 39.2158 20.108C39.2158 20.108 38.9062 30.5 49.5334 30.5C49.5334 30.5 55.9392 30.4772 58.4631 25.7244L57.5569 25.1453C57.5569 25.1453 55.1778 28.7371 49.8879 28.7371C49.8879 28.7371 48.3526 28.6863 47.9283 28.5949L47.9432 21.716H59.8311ZM47.8134 20.0242V12.9903C47.8134 12.3781 48.1779 11.2731 49.4635 11.2731C50.6194 11.2731 50.9963 12.4137 50.9963 13.0259V20.0216H47.8109L47.8134 20.0242Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_10"
+                      d="M109.992 21.716C109.992 21.716 110.936 9.1876 99.732 9.1876C99.732 9.1876 89.3769 8.56271 89.3769 20.108C89.3769 20.108 89.0674 30.5 99.6946 30.5C99.6946 30.5 106.1 30.4772 108.624 25.7244L107.718 25.1453C107.718 25.1453 105.339 28.7371 100.049 28.7371C100.049 28.7371 98.5138 28.6863 98.0894 28.5949L98.1044 21.716H109.992ZM97.9745 20.0242V12.9903C97.9745 12.3781 98.339 11.2731 99.6247 11.2731C100.781 11.2731 101.157 12.4137 101.157 13.0259V20.0216H97.9721L97.9745 20.0242Z"
+                      fill="#859BA6"
+                    />
+                    <path
+                      id="Vector_11"
+                      d="M72.4033 7.81847L84.421 2.53735V5.98189H132.771V7.81847H84.421V26.324C84.421 26.324 84.4735 27.6932 85.6243 27.6932C86.7751 27.6932 87.8012 26.1258 87.8012 26.1258L88.5176 26.8549C88.5176 26.8549 87.1122 30.5001 81.9096 30.5001C76.7071 30.5001 75.2767 26.8269 75.2767 24.3248V7.81847H72.4058H72.4033Z"
+                      fill="#859BA6"
+                    />
+                  </g>
+                </g>
+              </g>
+              <defs>
+                <clipPath id="clip0_4720_136">
+                  <rect
+                    width="146"
+                    height="30"
+                    fill="white"
+                    transform="translate(0 0.5)"
+                  />
+                </clipPath>
+              </defs></svg>
+            </a>
+          <div style="display: flex">
+            <a href="tel:0 (800) 00-00-00">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                data-i18n="navbar.call"
+                style="max-width: 100px; margin-right: 20px"
+              >
+                Зв'язатись
+              </button>
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarTogglerDemo02"
+              aria-controls="navbarTogglerDemo02"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+
+          <div
+            class="collapse navbar-collapse navbar-collapse_justify"
+            id="navbarTogglerDemo02"
+          >
+            <ul
+              class="navbar-nav mr-1 mt-2 mt-lg-0"
+              style="
+                width: 30%;
+                display: flex;
+      
+                align-items: center;
+                justify-content: space-evenly;
+              "
+            >
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-i18n="menu.company"
+                  >Компанія</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-i18n="menu.products"
+                  >Продукції</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-i18n="menu.articles"
+                  >Статті</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-i18n="menu.solutions"
+                  >Рішення</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-i18n="menu.contacts"
+                  >Контакти</a
+                >
+              </li>
+              <li class="nav-item nav-item_display-none">
+                <a class="nav-link" href="#">0 (800) 00-00-00</a>
+              </li>
+              <li class="nav-item nav-item_display-none">
+                <div class="box-lang">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary ua-language btn-sm"
+                    style="border: none; background-color: #859ba6"
+                  >
+                    Ua
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary ru-language btn-sm"
+                    style="border: none"
+                  >
+                    Ru
+                  </button>
+                </div>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <div class="navTel">
+                <p class="navTel__tel">0 (800) 00-00-00</p>
+                <a href="tel:0 (800) 00-00-00">
+                  <button
+                    type="button"
+                    class="btn btn-secondary btn-sm btn-secondary_size"
+                    style="
+                      background: var(---, #859ba6);
+                      border: none;
+                      margin-left: 30px;
+                    "
+                    data-i18n="connect.button"
+                  >
+                    Зв'язатись
+                  </button>
+                </a>
+                <div class="box-lang" style="padding-left: 60px">
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary ua-language btn-sm"
+                    style="border: none; background-color: #859ba6"
+                  >
+                    Ua
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary ru-language btn-sm"
+                    style="border: none"
+                  >
+                    Ru
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="main-box">
+      <section class="first-frame">
+        <div class="box-text-left">
+          <h3 class="box-text-left__title" data-i18n="main.title">Meltem</h3>
+          <p class="box-text-left__subtitle" data-i18n="main.subtitle">
+            Meltem – це гарантовано якісне вентиляційне обладнання від
+            німецького заводу.
+          </p>
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm"
+            style="
+              background: var(---, #859ba6);
+              border: none;
+              min-height: 40px;
+            "
+            data-i18n="main.product"
+          >
+            Продукція
+          </button>
+        </div>
+        <div class="box-img">
+          <img src="/img/d09f50948e87da72cbc909701cb91703.png" alt="" class="box-img__img" />
+        </div>
+        <div class="box-text-right">
+          <h5 class="box-text-right__title" data-i18n="main.product_title">
+            Відцентровий витяжний вентилятор
+          </h5>
+          <h6
+            class="box-text-right__subtitle"
+            data-i18n="main.product_subtitle"
+          >
+            Meltem V-II 30-N
+          </h6>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            style="max-width: 140px"
+            data-i18n="main.details"
+          >
+            Детальніше
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div
+        class="alert alert-light alert-dismissible fade show alert-dismissible_color"
+        role="alert"
+        style="
+          position: absolute;
+          right: 0;
+          display: flex;
+          justify-content: space-between;
+          max-width: 420px;
+          padding: 10px 30px 10px 10px;
+          margin-right: 60px;
+        "
+      >
+        <p data-i18n="footer.message">
+          Використовуючи цей сайт, ви даєте згоду на роботу з файлами
+          <a href="">сookies.</a>
+        </p>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-dismiss="alert"
+          style="max-width: 140px; max-height: 40px; margin-left: 20px"
+          data-i18n="footer.agree"
+        >
+          Згоден
+        </button>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@22.0.2/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next/dist/umd/i18next.min.js"></script>
+
+    <script src="index.js"></script>
+    <script src="translate.js"></script>
+  </body>
+</html>
